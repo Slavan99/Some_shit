@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Party{% endblock %}
+
+{% block body %}
+    <h1>Вечеринка</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Номер</th>
+                <td>{{ party.id }}</td>
+            </tr>
+            <tr>
+                <th>Имя</th>
+                <td>{{ party.name }}</td>
+            </tr>
+            <tr>
+                <th>Дата</th>
+                <td>{{ party.date }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('party_index') }}">Назад к списку</a>
+
+    <a href="{{ path('party_edit', {'id': party.id}) }}">Изменить</a>
+
+    {{ include('party/_delete_form.html.twig') }}
+{% endblock %}

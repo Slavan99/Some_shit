@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}Party index{% endblock %}
+
+{% block body %}
+    <h1>Список всех вечеринок</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Название</th>
+                <th>Дата</th>
+                <th>Место</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for party in parties %}
+            <tr>
+                <td>{{ party.id }}</td>
+                <td>{{ party.name }}</td>
+                <td>{{ party.date|date() }}</td>
+                <td>{{ party.location }}</td>
+                <td>
+                    <a href="{{ path('party_show', {'id': party.id}) }}">Показать</a>
+                    <a href="{{ path('party_edit', {'id': party.id}) }}">Изменить</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('party_new') }}">Создать</a>
+{% endblock %}
